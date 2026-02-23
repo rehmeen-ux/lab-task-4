@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multiplication Tool</title>
+    <style>
+        body {
+            background-color: #f4f4f4;
+            font-family: Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 7px;
+            margin: 8px 0;
+        }
+        button {
+            padding: 7px 20px;
+            background-color: teal;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkcyan;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Simple Multiplier</h3>
+
+        <input type="number" id="firstValue" placeholder="First Number">
+        <input type="number" id="secondValue" placeholder="Second Number">
+        <br>
+        <button onclick="multiplyNumbers()">Multiply</button>
+    </div>
+
+    <script>
+        function multiplyNumbers() {
+            let value1 = Number(document.getElementById("firstValue").value);
+            let value2 = Number(document.getElementById("secondValue").value);
+
+            let result = value1 * value2;
+
+            alert("Result: " + result);
+        }
+    </script>
+
+</body>
+</html>

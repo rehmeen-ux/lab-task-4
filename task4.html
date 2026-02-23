@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Result Calculator</title>
+    <style>
+        body {
+            background: #fafafa;
+            font-family: 'Calibri', sans-serif;
+            display: grid;
+            place-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 340px;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: 25px;
+            color: #222;
+            font-weight: 700;
+        }
+        input[type="number"] {
+            width: 85%;
+            margin: 10px 0;
+            padding: 12px 14px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 1em;
+            outline-offset: 2px;
+            transition: border-color 0.3s ease;
+        }
+        input[type="number"]:focus {
+            border-color: #4a90e2;
+        }
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: #4a90e2;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: 700;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 90%;
+        }
+        button:hover {
+            background-color: #357ABD;
+        }
+        #output {
+            margin-top: 22px;
+            font-weight: 600;
+            font-size: 1.15em;
+            color: #444;
+            background-color: #eaf4fc;
+            padding: 14px 20px;
+            border-radius: 12px;
+            min-height: 65px;
+            line-height: 1.4;
+            white-space: pre-line;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Result Calculator</h1>
+        <input id="markA" type="number" placeholder="Enter marks for Subject A" min="0" max="100" />
+        <input id="markB" type="number" placeholder="Enter marks for Subject B" min="0" max="100" />
+        <input id="markC" type="number" placeholder="Enter marks for Subject C" min="0" max="100" />
+
+        <button onclick="computeResult()">Get Result</button>
+
+        <div id="output">Enter marks and click "Get Result"</div>
+    </div>
+
+    <script>
+        function computeResult() {
+            const m1 = Number(document.getElementById('markA').value);
+            const m2 = Number(document.getElementById('markB').value);
+            const m3 = Number(document.getElementById('markC').value);
+
+            if ([m1, m2, m3].some(x => isNaN(x) || x < 0 || x > 100)) {
+                document.getElementById('output').textContent = 'Please input valid marks (0-100) for all subjects.';
+                return;
+            }
+
+            const totalMarks = m1 + m2 + m3;
+            const percent = (totalMarks / 300) * 100;
+
+            let gradeLetter;
+            if (percent >= 90) gradeLetter = 'A+';
+            else if (percent >= 80) gradeLetter = 'A';
+            else if (percent >= 70) gradeLetter = 'B';
+            else if (percent >= 60) gradeLetter = 'C';
+            else if (percent >= 50) gradeLetter = 'D';
+            else gradeLetter = 'F';
+
+            document.getElementById('output').textContent = 
+                `Total: ${totalMarks} out of 300\n` + 
+                `Percentage: ${percent.toFixed(2)}%\n` +
+                `Grade: ${gradeLetter}`;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank ATM Machine</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Tahoma, sans-serif;
+            background: linear-gradient(to right, #4e73df, #1cc88a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: #ffffff;
+            padding: 30px;
+            width: 320px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        h3 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 12px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 8px;
+            background-color: #e74a3b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #c0392b;
+        }
+
+        #displayBalance {
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h3>ATM Withdrawal</h3>
+
+        <div id="displayBalance">
+            Available Balance: $<span id="money">1500</span>
+        </div>
+
+        <input type="number" id="amountInput" placeholder="Withdrawal amount">
+
+        <button onclick="processTransaction()">Proceed</button>
+    </div>
+
+    <script>
+        let balanceAmount = 1500;
+
+        function processTransaction() {
+
+            let withdrawValue = parseInt(document.getElementById("amountInput").value);
+
+            if (isNaN(withdrawValue) || withdrawValue <= 0) {
+                alert("Enter a valid withdrawal amount.");
+                return;
+            }
+
+            if (withdrawValue > balanceAmount) {
+                alert("Transaction denied! Not enough balance.\nCurrent Balance: $" + balanceAmount);
+            } else {
+                balanceAmount -= withdrawValue;
+                document.getElementById("money").innerHTML = balanceAmount;
+
+                alert("Withdrawal Successful!\nRemaining Balance: $" + balanceAmount);
+            }
+
+            document.getElementById("amountInput").value = "";
+        }
+    </script>
+
+</body>
+</html>
